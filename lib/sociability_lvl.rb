@@ -1,19 +1,19 @@
 class SociabilityLvl
+  attr_reader :user_result, :questions, :about, :result, :answers
 
   def initialize(questions, results)
+    puts "Тест поможет определить ваш уровень коммуникабельности.\n" \
+         "Для этого необходимо ответить на вопросы.\n\n"
     @questions = questions
     @results = results
     @name = "Ваш уровень общительности."
-    @about = "Тест поможет определить ваш уровень коммуникабельности.\n" \
-             "Для этого необходимо ответить на вопросы.\n\n"
-    @test_size = @questions.size
-    @result = 0
-    @test_answers = "1 - да.\n2 - нет.\n3 - иногда.\n\n"
+    @answers = "1 - да.\n2 - нет.\n3 - иногда.\n\n"
+    @user_result = ""
   end
 
   def check_answers(user_answers)
     @result = 0
-    for i in 0..user_answers.size
+    user_answers.each do |i|
       if user_answers[i] == 1
         @result += 2
       elsif user_answers[i] == 2
@@ -24,52 +24,32 @@ class SociabilityLvl
     end
   end
 
-  def show_results
-    puts "Вы набрали #{@result}, ваш результат теста:\n"
+  def process_results
     case @result
     when 30..32
-      puts @results[0]
+      @user_result = @results[0]
     when 25..29
-      puts @results[1]
+      @user_result = @results[1]
     when 19..24
-      puts @results[2]
+      @user_result = @results[2]
     when 14..18
-      puts @results[3]
+      @user_result = @results[3]
     when 9..13
-      puts @results[4]
+      @user_result = @results[4]
     when 4..8
-      puts @results[5]
+      @user_result = @results[5]
     when 0..3
-      puts @results[6]
+      @user_result = @results[6]
     end
   end
 
-  def get_question(num)
-    @questions[num]
-  end
 
-  def all_questions
-    @questions
-  end
-
-  def show_test_size
-    @test_size
-  end
-
-  def show_test_answers
-    @test_answers
-  end
-
-  def show_about
-    @about
-  end
-
-  def check_answer(user_answer)
-    if (user_answer == 1 || user_answer == 2 || user_answer == 3)
-      return true
+  def check_user_input(user_input)
+    if user_input == 1 || user_input == 2 || user_input == 3
+      true
     else
       puts "Введите 1, 2 или 3 в зависимости от выбранного вами ответа"
-      return false
+      false
     end
   end
 end

@@ -1,24 +1,9 @@
 class User
+  attr_accessor :answers, :name
 
-  def initialize
-    @user_name = "Аноним"
-    @user_answers = []
-  end
-
-  def set_name(user_name)
-    @user_name = user_name
-  end
-
-  def show_name
-    @user_name
-  end
-
-  def get_user_answer(user_answer)
-    @user_answers << user_answer
-  end
-
-  def show_user_answers
-    @user_answers
+  def initialize(name)
+    @name = name
+    @answers = []
   end
 
   def say_hello
@@ -35,6 +20,6 @@ class User
       hello = "Доброй ночи"
     end
 
-    puts "#{hello}, #{@user_name}!\n"
+    puts "#{hello}, #{@name}!\n"
   end
 end

@@ -1,44 +1,41 @@
 require_relative "./lib/user.rb"
 require_relative "./lib/sociability_lvl.rb"
-require_relative "./lib/test_reader.rb"
-file_questions = "data/sociability_lvl_questions.txt"
-file_results = "data/sociability_lvl_results.txt"
 
-user = User.new
+file_path = "#{File.dirname(__FILE__)}"
+file_questions = "#{file_path}/data/sociability_lvl_questions.txt"
+file_results = "#{file_path}/data/sociability_lvl_results.txt"
+
+begin
+  questions = File.readlines(file_questions, encoding: 'UTF-8')
+  results = File.readlines(file_results, encoding: 'UTF-8')
+rescue SystemCallError => error
+  abort "Ошибка чтения файла. #{error.message}"
+end
 
 print "Введите ваше имя: "
-user_name = STDIN.gets.chomp
-
-if user_name == ""
-  user_name = "Анончик"
-end
-
-user.set_name(user_name)
+name = STDIN.gets.chomp
+name = "Анончик" if name == ""
+user = User.new(name)
 user.say_hello
 
-if File.exist?(file_questions) && File.exist?(file_questions)
-  questions = TestReader.new(file_questions).to_array
-  results = TestReader.new(file_results).to_array
-  test1 = SociabilityLvl.new(questions, results)
-  puts test1.show_about
-  sleep(3)
-else
-  abort "Ошибка чтения файла."
-end
+test = SociabilityLvl.new(questions, results)
+sleep(3)
 
-
-test1.all_questions.each_with_index { |obj, i|
+test.questions.each do |question|
   system("clear")
-  puts test1.get_question(i)
-  puts test1.show_test_answers
-  user_answer = STDIN.gets.to_i
+  puts question
+  puts test.answers
+  user_input = STDIN.gets.to_i
 
-  until test1.check_answer(user_answer) != false
-    user_answer = STDIN.gets.to_i
+  until test.check_user_input(user_input) != false
+    user_input = STDIN.gets.to_i
   end
 
-  user.get_user_answer(user_answer)
-}
+  user.answers << user_input
+end
 
-test1.check_answers(user.show_user_answers)
-test1.show_results
+test.check_answers(user.answers)
+test.process_results
+system("clear")
+puts "#{user.name}, вы набрали #{test.result}, ваш результат теста:\n"
+puts test.user_result
