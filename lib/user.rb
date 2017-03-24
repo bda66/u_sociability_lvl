@@ -8,18 +8,17 @@ class User
 
   def say_hello
     time = Time.now.hour
-    hello = ''
 
     if time >= 6 && time < 10
-      hello = "Доброе утро"
+      hello = 0
     elsif time >= 10 && time < 17
-      hello = "Добрый день"
+      hello = 1
     elsif time >= 17 && time < 23
-      hello = "Добрый вечер"
+      hello = 2
     elsif time == 23 || time < 6
-      hello = "Доброй ночи"
+      hello = 3
     end
 
-    puts "#{hello}, #{@name}!\n\n"
+    hello
   end
 end

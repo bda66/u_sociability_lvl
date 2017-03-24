@@ -1,11 +1,11 @@
 class SociabilityLvl
-  attr_reader :user_result, :questions, :about, :result, :answers
+  attr_reader :user_result, :questions, :about, :result, :answers, :name
 
-  def initialize(questions, results)
+  def initialize(name, questions, results, answers)
     @questions = questions
     @results = results
-    @name = "Ваш уровень общительности."
-    @answers = "1 - да.\n2 - нет.\n3 - иногда.\n\n"
+    @answers = answers
+    @name = name
     @user_result = ""
   end
 
@@ -41,13 +41,7 @@ class SociabilityLvl
     end
   end
 
-
-  def check_user_input(user_input)
-    if user_input == 1 || user_input == 2 || user_input == 3
-      true
-    else
-      puts "Введите 1, 2 или 3 в зависимости от выбранного вами ответа"
-      false
-    end
+  def check_user_input?(user_input)
+    user_input == 1 || user_input == 2 || user_input == 3 ? true : false
   end
 end
