@@ -19,6 +19,9 @@ user = User.new(name)
 user.say_hello
 
 test = SociabilityLvl.new(questions, results)
+
+puts "Тест поможет определить ваш уровень коммуникабельности.\n" \
+     "Для этого необходимо ответить на вопросы.\n\n"
 sleep(3)
 
 test.questions.each do |question|

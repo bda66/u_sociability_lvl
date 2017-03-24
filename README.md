@@ -1,5 +1,5 @@
 # Тест "Ваш уровень общительности"
-[Тест на общительность](http://www.syntone-spb.ru/library/article_syntone/content/4969.html) - cсылка на источник.
+Тест на общительность - [cсылка на источник](http://www.syntone-spb.ru/library/article_syntone/content/4969.html).
 ### Инструкция:
   - Перейдите в папку с тестом.
   - Запустите программу.

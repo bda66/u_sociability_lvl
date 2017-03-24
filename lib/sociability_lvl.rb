@@ -2,8 +2,6 @@ class SociabilityLvl
   attr_reader :user_result, :questions, :about, :result, :answers
 
   def initialize(questions, results)
-    puts "Тест поможет определить ваш уровень коммуникабельности.\n" \
-         "Для этого необходимо ответить на вопросы.\n\n"
     @questions = questions
     @results = results
     @name = "Ваш уровень общительности."

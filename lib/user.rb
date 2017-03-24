@@ -20,6 +20,6 @@ class User
       hello = "Доброй ночи"
     end
 
-    puts "#{hello}, #{@name}!\n"
+    puts "#{hello}, #{@name}!\n\n"
   end
 end
